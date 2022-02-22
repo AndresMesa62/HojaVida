@@ -256,11 +256,11 @@ https://www.tooplate.com/view/2117-infinite-loop
             </div>
             
             <div class="col-sm-12 col-md-6">
-              <form action="" method="get">
+              <form action="https://formspree.io/f/xbjwowba" method="post">
                 <input id="name" name="name" type="text" placeholder="Nombre" class="tm-input" required />
                 <input id="email" name="email" type="email" placeholder="Email" class="tm-input" required />
                 <textarea id="message" name="message" rows="8" placeholder="Mensaje" class="tm-input" required></textarea>
-                <button type="submit" class="btn tm-btn-submit">Enviar</button>
+                <button type="submit" class="btn tm-btn-submit" onclick="enviar(document.getElementById('name').innerText,document.getElementById('email').innerText,document.getElementById('message').innerText)">Enviar</button>
               </form>
             </div>
             
