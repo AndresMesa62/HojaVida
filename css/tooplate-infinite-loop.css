@@ -146,10 +146,10 @@ blockquote {
 
 #infinite {
 	background-color: #222;
-  background-image: url(../img/home-img2.jpeg);
+  background-image: url(../img/home5.jpeg);
   background-repeat:repeat;
-  height: 170vh;
-  min-height: 375px;
+  height: 120vh;
+  min-height: 100px;
   position:relative;
   
 }
