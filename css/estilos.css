@@ -45,7 +45,8 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 600px;
+	height: auto;
+	width: 100%;
 }
 
 .botones {
@@ -54,6 +55,7 @@ main {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	width: 80%;
 }
 
 .botones a {
@@ -65,7 +67,7 @@ main {
 	font-size: 22px;
     font-weight: bold;
 	cursor: pointer;
-    width: 300px;
+    width: 50%;
     text-align: center;
     text-decoration: none;
 }
