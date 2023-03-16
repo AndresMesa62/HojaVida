@@ -73,3 +73,22 @@ main {
 	background-color: #ffffff;
 	color: #30B5BE;
 }
+
+@media screen and (min-width: 992px) {
+	nav {
+		justify-content: space-between;
+	}
+	.menu-icon {
+		display: none;
+	}
+	.botones {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.botones {
+		max-width: 1140px;
+	}
+}
