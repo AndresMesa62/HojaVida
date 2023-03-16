@@ -76,21 +76,54 @@ main {
 	color: #30B5BE;
 }
 
-@media screen and (min-width: 992px) {
+@media (max-width: 767px) {
 	nav {
-		justify-content: space-between;
+		flex-direction: column;
+		align-items: center;
 	}
-	.menu-icon {
+	.logo {
+		margin: 20px 0;
+	}
+	ul {
 		display: none;
 	}
-	.botones {
-		max-width: 900px;
-		margin: 0 auto;
+	.menu-icon {
+		display: block;
 	}
-}
-
-@media screen and (min-width: 1200px) {
+	.menu-icon span {
+		display: block;
+		width: 30px;
+		height: 3px;
+		margin: 5px 0;
+		background-color: #ffffff;
+	}
+	.menu-active {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		background-color: #000000;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+	.menu-active li {
+		margin: 20px 0;
+	}
+	.menu-active a {
+		color: #ffffff;
+		font-size: 24px;
+	}
 	.botones {
-		max-width: 1140px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 40px;
+	}
+	.botones a {
+		width: 80%;
 	}
 }
