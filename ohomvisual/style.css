@@ -446,7 +446,7 @@ body {
 
 /*Estilos seccion contacto*/
 .contacto-seccion {
-  background-image: url('/HojaVida/ohomvisual/contacto.png') ;
+  background-image: url('../ohomvisual/contacto.png') ;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
