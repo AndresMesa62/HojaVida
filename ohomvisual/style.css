@@ -86,7 +86,7 @@ body {
 }
 /* Estilos del main */
 .fondo-main {
-  background: url(fondo_main.png) no-repeat center center;
+  background: url('../images/fondo_main.png') no-repeat center center;
   background-size: cover;
   margin: 0 3.5% 0 3.5%;
   border: 1px solid #000000;
@@ -100,7 +100,7 @@ body {
 .dibujo-borde-izquierdo{
   background-clip: padding-box;
   background-image: linear-gradient(to right, #FCE88D 4%, transparent 0%);
-  height: 400px;
+  height: 50vh;
   width: 100px;
   /* or 112% */
   transform: translatex(210%) translateY(25%);
@@ -115,7 +115,7 @@ body {
   /* or 112% */
   transform: translatex(5%) ;
   text-transform: capitalize;
-
+  
   color: #FFFFFF;
 }
 
@@ -125,22 +125,32 @@ body {
   right: 0;
   max-width: 100%;
   height: auto; /* Altura automática */
-  
+  text-align: center;
   transform: translatey(84%) ;
 }
 .linkhome{
-  color: white;
-  float: left;
+
   font-size: 20px;
   transform: translatex(-20%);
   line-height: 45px;
+  margin-left: 10%;
+  margin-top: 80px;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgba(252, 232, 141, 1);;
+  color: #000;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
 }
 .linkhome:hover {
-  color: #FCE88D; /* color de fondo al pasar el puntero */
+  background-color: rgba(252, 232, 141, 0.8); /* color de fondo al pasar el puntero */
 }
 
 .linkhome:active {
-  color: #FCE88D; /* color de fondo al hacer clic */
+  background-color: rgba(252, 232, 141, 0.8); /* color de fondo al hacer clic */
 }
 #imagen-main-derecha{
   width: 100%;
@@ -162,11 +172,24 @@ body {
   grid-gap: 20px;
 }
 
-.left-conteiner-about {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  transform: translatex(20%) ;
+.left-conteiner-about a{
+  color: #000000;
+  margin-top: 30px;
+  width: 50%;
+  height: 50px;
+  background-color: #FCE88D;
+  text-align: center;
+  margin-right: 5%;
+  border-radius: 5px;
+  text-decoration: none;
+  
+}
+.left-conteiner-about a:hover {
+  background-color: rgba(252, 232, 141, 0.8); /* color de fondo al pasar el puntero */
+}
+
+.left-conteiner-about a:active {
+  background-color: rgba(252, 232, 141, 0.8); /* color de fondo al hacer clic */
 }
 .left-conteiner-about h1{
   font-size: 40px;
@@ -423,7 +446,7 @@ body {
 
 /*Estilos seccion contacto*/
 .contacto-seccion {
-  background-image: url("contacto.png") ;
+  background-image: url('../images/contacto.png') ;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -502,22 +525,18 @@ footer {
 }
 
 
-
-
-
-
-
-
-
 /* Estilos para la agencia */
 
 .agency-container {
   display: flex;
   flex-wrap: wrap;
+  
 }
 
 .agency-selectors {
   width: 15%;
+  padding: 15px;
+  background-color:#BDBDBD;
 }
 
 .agency-select,
@@ -531,15 +550,39 @@ footer {
   overflow-x: auto;
   flex-wrap: wrap;
   max-height: calc(100vh - 100px); /* 3 rows */
+  background-color: #eeeeee;
 }
 
 .agency-photo {
   width: 30%;
+  height: 100px;
   margin: 10px;
 }
 
 .agency-photo:nth-child(3n + 1) {
   clear: both; /* new row */
+}
+.img-location-agency {
+  flex: 0 0 calc(33%); /* Establece el ancho de cada elemento hijo a un 25% menos 20px */
+   /* Agrega un margen derecho para separar los elementos */
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.img-location-agency img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s;
+}
+
+.img-location-agency:hover img {
+  filter: blur(5px);
+}
+.img-location-agency:hover .texto-locations {
+  opacity: 1;
 }
 
 /* Estilos para el footer en dispositivos móviles */
@@ -621,6 +664,11 @@ footer {
     flex: 0 0 calc(50%); /* Establece el ancho de cada elemento hijo a un 25% menos 20px */
   
   }
+ 
+  .img-location-agency{
+    flex: 0 0 calc(50%); /* Establece el ancho de cada elemento hijo a un 25% menos 20px */
+  
+  }
   footer {
     text-align: center;
   }
@@ -633,6 +681,33 @@ footer {
   .logo-container {
     margin-bottom: 10px;
   }
+  
+
+
+
+  .agency-container {
+    display: block;
+    flex-wrap: wrap;
+  }
+  
+  .agency-selectors {
+    width: 100%;
+    padding: 15px;
+  }
+  
+  .agency-select,
+  .agency-filter {
+    display: block;
+  }
+  
+  .agency-gallery {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: wrap;
+    max-height: calc(100vh - 100px); /* 3 rows */
+  }
+  
 }
 @media (max-width: 450px) {
   .contenedor-locations .img-location {
@@ -643,6 +718,32 @@ footer {
   .img-location{
     flex: 0 0 calc(100%); /* Establece el ancho de cada elemento hijo a un 25% menos 20px */
   
+  }
+  .img-location-agency{
+    flex: 0 0 calc(100%); /* Establece el ancho de cada elemento hijo a un 25% menos 20px */
+  
+  }
+  .agency-container {
+    display: block;
+    flex-wrap: wrap;
+  }
+  
+  .agency-selectors {
+    width: 100%;
+    padding: 15px;
+  }
+  
+  .agency-select,
+  .agency-filter {
+    display: block;
+  }
+  
+  .agency-gallery {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: wrap;
+    max-height: calc(100vh - 100px); /* 3 rows */
   }
 }
 
