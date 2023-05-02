@@ -36,7 +36,24 @@
 
 
 
-
+  <div class="contenedor_principal_detalle_propiedad">
+    <div class="columna1_detalle_propiedad">
+      <p>Texto estático</p>
+    </div>
+    <div class="columna2_detalle_propiedad">
+      <img src="imagen1.jpg">
+    </div>
+    <div class="columna3_detalle_propiedad">
+      <img src="imagen2.jpg">
+    </div>
+    <div class="columna4_detalle_propiedad">
+      <img src="imagen3.jpg">
+    </div>
+  </div>
+  <div class="contenedor_secundario_detalle_propiedad">
+    <img src="imagen1.jpg">
+  </div>
+  
 
 <section class="section-content padding-y bg">
     <div class="container">
@@ -121,5 +138,15 @@
   </footer>
   
     <script src="script.js"></script>
+    <script>
+      const imagenes = document.querySelectorAll('.contenedor_principal_detalle_propiedad > div:not(.columna1_detalle_propiedad) > img');
+      const imagenPrincipal = document.querySelector('.contenedor_secundario_detalle_propiedad > img');
+
+      imagenes.forEach((imagen) => {
+        imagen.addEventListener('click', () => {
+          imagenPrincipal.src = imagen.src;
+        });
+      });
+    </script>
   </body>
   </html>

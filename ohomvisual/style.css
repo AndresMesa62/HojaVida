@@ -586,6 +586,38 @@ footer {
 }
 
 /* Estilos para el footer en dispositivos móviles */
+.contenedor_principal_detalle_propiedad {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.contenedor_principal_detalle_propiedad > div {
+  width: 25%;
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+}
+
+.columna1_detalle_propiedad {
+  background-color: #f2f2f2;
+}
+
+.columna2_detalle_propiedad,
+.columna3_detalle_propiedad,
+.columna4_detalle_propiedad {
+  overflow-x: scroll;
+}
+
+.contenedor_secundario_detalle_propiedad {
+  margin-top: 20px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .contenedor_principal_detalle_propiedad > div {
+    width: 100%;
+  }
+}
 
 @media (max-width: 768px) {
   .navbar-menu {
