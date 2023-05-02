@@ -142,6 +142,8 @@
       const imagenes = document.querySelectorAll('.contenedor_principal_detalle_propiedad > div:not(.columna1_detalle_propiedad) > img');
       const imagenPrincipal = document.querySelector('.contenedor_secundario_detalle_propiedad > img');
 
+
+      
       imagenes.forEach((imagen) => {
         imagen.addEventListener('click', () => {
           imagenPrincipal.src = imagen.src;
