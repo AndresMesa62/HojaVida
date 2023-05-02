@@ -36,93 +36,109 @@
 
 
 
-  <div class="contenedor_principal_detalle_propiedad">
-    <div class="columna1_detalle_propiedad">
-      <p>Texto estático</p>
+  <div class="contenedor-principal">
+    <div class="columna-izquierda detalle_propiedad">
+      <h2>Nombre de la propiedad</h2><br>
+      <p>Descripcion de la propiedad.</p><br>
+      <a class="menuli" href="#locationss" style="margin-left: 0px;">More about this property...</a>
     </div>
-    <div class="columna2_detalle_propiedad">
-      <img src="imagen1.jpg">
-    </div>
-    <div class="columna3_detalle_propiedad">
-      <img src="imagen2.jpg">
-    </div>
-    <div class="columna4_detalle_propiedad">
-      <img src="imagen3.jpg">
+    <div class="columna-derecha detalle_propiedad">
+      <div class="galeria-imagenes">
+        <img src="../ohomvisual/apartamentos/apto_laureles.jpg"/>
+        <img src="../ohomvisual/apartamentos/apto_medellin.jpg"/>
+        <img src="../ohomvisual/apartamentos/apto_poblado.jpg"/>
+        <img src="../ohomvisual/apartamentos/casa_Envigado_tpbBesA.jpg"/>
+        <img src="../ohomvisual/apartamentos/casa_rionegro.jpg"/>
+        <img src="../ohomvisual/apartamentos/finca_caldas.jpg"/>
+        <img src="../ohomvisual/apartamentos/apto_laureles.jpg"/>
+        <img src="../ohomvisual/apartamentos/apto_medellin.jpg"/>
+        <img src="../ohomvisual/apartamentos/apto_poblado.jpg"/>
+        <img src="../ohomvisual/apartamentos/casa_Envigado_tpbBesA.jpg"/>
+        <img src="../ohomvisual/apartamentos/casa_rionegro.jpg"/>
+        <img src="../ohomvisual/apartamentos/finca_caldas.jpg"/>
+        
+      </div>
     </div>
   </div>
-  <div class="contenedor_secundario_detalle_propiedad">
-    <img src="imagen1.jpg">
+  <div class="contenedor-secundario detalle_propiedad">
+    <div class="columna-izquierda-secundario detalle_propiedad">
+      <img src="../ohomvisual/apartamentos/apto_poblado.jpg" alt="Imagen seleccionada" />
+    </div>
+    <div class="columna-derecha-secundario detalle_propiedad">
+      <iframe width="100%" height="248px" style="border:0;"  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31738.155737178913!2d-75.65394714621493!3d6.094359232566067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e46868ee889645b%3A0xdc23e1d6e5ff0d04!2sCaldas%2C%20Antioquia!5e0!3m2!1ses!2sco!4v1681939340514!5m2!1ses!2sco" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe width="100%" height="248px" src="https://www.youtube.com/embed/aVW-x9_59ck" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
   </div>
-  
-
-<section class="section-content padding-y bg">
-    <div class="container">
+  <div class="tabla-detalles">
+    <div class="tabla-detalles">
+      <table>
+        <thead>
+          <tr>
+            <th>Característica</th>
+            <th>Dato</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ubicación</td>
+            <td>Medellín</td>
+          </tr>
+          <tr>
+            <td>Área (M^2)</td>
+            <td>134</td>
+          </tr>
+          <tr>
+            <td>Furnished</td>
+            <td>YES</td>
+          </tr>
+          <tr>
+            <td>Bedrooms</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>Bathrooms</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>Kitchen</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>Garage</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>Wifi</td>
+            <td>YES</td>
+          </tr>
+          <tr>
+            <td>Services</td>
+            <td>YES</td>
+          </tr>
+          <tr>
+            <td>Price (COP)</td>
+            <td>$ 1500000</td>
+          </tr>
+          <tr class="hidden">
+            <td>Ubicación</td>
+            <td>Medellín</td>
+          </tr>
+          <tr class="hidden">
+            <td>Área (M^2)</td>
+            <td>134</td>
+          </tr>
+          
+          <!-- 30 filas ocultas más aquí -->
+        </tbody>
+      </table>
+      
+      
+    </div>
+    <div style="margin-top: 20px;margin-bottom: 20px;display: flex;justify-content: center;">
+      <button  style="margin: 0 10px; width: 20%;height: 40px; background-color: #FCE88D;" id="ver-todo">Ver todo</button>
+      <button  style="margin: 0 10px;width: 20%;height: 40px; background-color: #FCE88D;" id="rentar">Rentar</button>
+    </div>
     
-    <!-- ============================ COMPONENT 1 ================================= -->
-    <div class="card">
-        <div class="row no-gutters">
-            <aside class="col-md-6">
-    <article class="gallery-wrap"> 
-        <div class="img-big-wrap" style="width: 1120px;">
-           <a href="#"><img src="apartamentos/apto_poblado.jpg" style="width: 1120px;height: 630px;"></a>
-        </div> <!-- img-big-wrap.// -->
-        
-    </article> <!-- gallery-wrap .end// -->
-            </aside>
-            <main class="col-md-6 border-left">
-    <article class="content-body">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31738.155737178913!2d-75.65394714621493!3d6.094359232566067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e46868ee889645b%3A0xdc23e1d6e5ff0d04!2sCaldas%2C%20Antioquia!5e0!3m2!1ses!2sco!4v1681939340514!5m2!1ses!2sco" width="560px" height="315px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <iframe width="560px" height="315px" src="https://www.youtube.com/embed/aVW-x9_59ck" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        
-    <h2 class="title">titulo para la propiedad ejemplo (hermosa casa)</h2>
-    
-    <div class="mb-3"> 
-        <var class="price h4">$ 4.000 (precio)</var> 
-    </div> 
-    
-    <p>esta es la descripcion de la propiedad para los usuarios</p>
-    
-    <div class="mb-3"> 
-      <var class="price h4">¿Why This Place?</var> 
-    </div> 
-  
-    <p>ventajas de este sitio</p>
-  
-    <div class="mb-3"> 
-      <var class="price h4">¿about transportation?</var> 
-    </div> 
-
-    <p>aqui aparece la informacion sobre la accesibilidad al transporte</p>
-
-    
-    <div class="mb-3"> 
-      <var class="price h4">¿If I'm a Student?</var> 
-    </div> 
-
-    <p>aqui aparece la descripcion de porq es buena para estudiantes</p>
-    <br><br>
-        <a href="#" class="btn  btn-primary" style="text-decoration: none; background-color: #fce88d; color:black"> <span class="text">Rentar</span> <i class="fas fa-shopping-cart"></i>  </a>
-    </article> <!-- product-info-aside .// -->
-            </main> <!-- col.// -->
-        </div> <!-- row.// -->
-    </div> <!-- card.// -->
-    <!-- ============================ COMPONENT 1 END .// ================================= -->
-    
-    <br>
-    <div class="row">
-                <div class="col-md-9">
-    
-    
-        
-    
-        </div> <!-- col.// -->
-    </div> <!-- row.// -->
-    
-    
-    </div> <!-- container .//  -->
-    </section>
-    <!-- ========================= SECTION CONTENT END// ========================= -->
-
         
 
     <footer>
@@ -139,16 +155,26 @@
   
     <script src="script.js"></script>
     <script>
-      const imagenes = document.querySelectorAll('.contenedor_principal_detalle_propiedad > div:not(.columna1_detalle_propiedad) > img');
-      const imagenPrincipal = document.querySelector('.contenedor_secundario_detalle_propiedad > img');
+      const galeria = document.querySelector('.galeria-imagenes');
+      const imagenes = galeria.querySelectorAll('img');
+      const imagenSeleccionada = document.querySelector('.contenedor-secundario img');
 
-
-      
       imagenes.forEach((imagen) => {
         imagen.addEventListener('click', () => {
-          imagenPrincipal.src = imagen.src;
+          imagenSeleccionada.src = imagen.src;
         });
       });
+    </script>
+    <script>
+      const verTodoBtn = document.getElementById("ver-todo");
+      const filasOcultas = document.querySelectorAll(".hidden");
+
+      verTodoBtn.addEventListener("click", function() {
+        filasOcultas.forEach(function(fila) {
+          fila.classList.toggle("hidden");
+        });
+      });
+
     </script>
   </body>
   </html>
