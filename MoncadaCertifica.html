@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Página editable e imprimir</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+    
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .editable {
+      width: 400px;
+      height: 200px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 20px;
+      outline: none;
+    }
+    
+    #imprimir-btn {
+      display: none;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: green;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div class="editable" contenteditable="true"></div>
+    <div class="editable" contenteditable="true"></div>
+    <button id="imprimir-btn">Imprimir</button>
+  </div>
+
+  <script>
+    window.onload = function() {
+      var imprimirBtn = document.getElementById('imprimir-btn');
+      imprimirBtn.addEventListener('click', function() {
+        imprimirBtn.style.display = 'none'; // Oculta el botón antes de la impresión
+        window.print(); // Llama a la función de impresión del explorador
+        
+        // Espera 1 segundo y vuelve a mostrar el botón
+        setTimeout(function() {
+          imprimirBtn.style.display = 'block';
+        }, 1000);
+      });
+    };
+  </script>
+</body>
+</html>
