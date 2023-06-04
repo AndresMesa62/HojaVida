@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title id="nombre_persona">Gestión_Piolo_</title>
+  <style>
+    @page {
+      size: letter landscape; /* Establece la orientación horizontal para la impresión */
+      margin: 0; /* Establece los márgenes de la página para la impresión */
+      
+    }
+    @page {
+      @top-center {
+        content: none; /* Elimina el contenido en el encabezado de página */
+      }
+
+      @bottom-center {
+        content: none; /* Elimina el contenido en el pie de página */
+      }
+    }
+    .container {
+      position: relative;
+      width: 100%; /* Ancho del contenedor */
+      height: auto; /* Altura del contenedor */
+    }
+
+    .container img {
+      width: 100%;
+      height: auto;
+      object-fit: cover; /* Ajusta la imagen al tamaño del contenedor sin deformarla */
+    }
+
+    .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: none; /* Color de fondo semitransparente */
+      
+      color: black;
+      text-align: center;
+    }
+    
+    #imprimir-btn {
+      
+      padding: 10px 20px;
+      background-color: #2379bd;
+      color: white;
+      font-weight: bold;
+      font-size: 25px;
+      width: 100%;
+      height: auto;
+      border: none;
+      cursor: pointer;
+      
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/2.15.0/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <img src="img/Piolo/piolocertificado.png" alt="Certificado Principal" style="margin-left: 13px   ;margin-top: 10px; margin-right: -200px;width: 98%;">
+    <div class="overlay">
+      <div style="font-family: Arial, Helvetica, sans-serif;"> 
+        <p style="font-size: 62px;margin-top: -100px;">&nbsp;CERTIFICADO</p>
+        <h3 id="inputDiv" contenteditable="true" style="margin-top: -60px; color: #c9c9c9;font-size: 17px;text-transform: uppercase;"><B>titulo certificado</B></h3>  
+        <p style="margin-top: 40px;font-size:16px;">HACE CONSTAR QUE:</p>  
+        <h1 id="Nombre_Certificado" contenteditable="true" style="font-size: 50px;margin-top: 30PX;font-family: COOPER; width: 100%;white-space: nowrap;text-transform: uppercase;">NOMBRE</h1>
+        <h2 contenteditable="true" style="margin-top: 0px;"><B>C.C # </B></h2>  
+        
+        <p style="margin-top: 20px; color: gray; font-size: 20px;">Asistió a la capacitación sobre<br><b id="outputDiv" style="text-transform: uppercase;"></b><BR>con duración de <b contenteditable="true" >(#horas)</b> horas.</p>
+        <div style="margin-top: 0px; font-size: 25px; color:black;font-weight: bold;white-space: nowrap;">Fecha de expedición <b id="fechaDiv"></b></div>
+      </div>
+      
+    </div>
+  </div>
+    <button id="imprimir-btn">Imprimir</button>
+   
+    <script>
+      function actualizarNombre() {
+        var nombre = new String();
+        var nombre = "Gestión_Piolo_"+document.getElementById('Nombre_Certificado').textContent
+  
+        document.getElementById('nombre_persona').textContent = nombre;
+      }
+      // Actualizar la fecha inicial al cargar la página
+      actualizarNombre();
+      // Actualizar la fecha cada segundo (opcional)
+      setInterval(actualizarNombre, 1000);
+    </script>
+    <script>
+      // Función para formatear la fecha como día/mes/año
+      function formatearFecha(fecha) {
+        var dia = fecha.getDate();
+        var mes = fecha.getMonth() + 1; // Los meses comienzan desde 0
+        var año = fecha.getFullYear();
+        if (dia < 10) {
+          dia = '0' + dia;
+        }
+        if (mes < 10) {
+          mes = '0' + mes;
+        }
+        return dia + '/' + mes + '/' + año;
+      }
+  
+      // Función para actualizar la fecha actual en el div
+      function actualizarFecha() {
+        var fechaActual = new Date();
+        var fechaFormateada = formatearFecha(fechaActual);
+  
+        document.getElementById('fechaDiv').textContent = fechaFormateada;
+      }
+     
+      // Actualizar la fecha inicial al cargar la página
+      actualizarFecha();
+  
+      // Actualizar la fecha cada segundo (opcional)
+      setInterval(actualizarFecha, 1000);
+    </script>
+  <script>
+    function generarNombre() {
+        var nombre = new String();
+        var nombre = "Gestión_Moncada_"+document.getElementById('Nombre_Certificado').textContent+".pdf"
+  
+        return nombre;
+    }
+    function compartirDocumento() {
+      // Opciones de configuración para la generación del PDF
+      var opciones = {
+        margin: 0,
+        filename: generarNombre(), // Nombre del archivo PDF generado
+        image: { type: 'png', quality: 1 }, // Opciones de imagen para el PDF
+        html2canvas: { scale: 2 }, // Escala de la impresión de la página
+        jsPDF: { unit: 'mm', format: 'letter', orientation: 'landscape' } // Configuración del formato del PDF
+      };
+
+      // Elemento HTML que se va a convertir en PDF (en este caso, todo el cuerpo de la página)
+      var elemento = document.body;
+
+      // Genera el PDF a partir de la impresión de la página
+      html2pdf().set(opciones).from(elemento).save().then(function(pdf) {
+        // Obtiene la URL del PDF generado
+        var pdfUrl = URL.createObjectURL(pdf);
+
+        // Crea el enlace de WhatsApp con el texto y la URL del PDF
+        var textoCompartir = '¡Aquí está tu documento PDF!'; // Puedes personalizar el mensaje
+        var enlaceWhatsApp = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(textoCompartir + '\n\n' + pdfUrl);
+
+        // Abre el enlace de WhatsApp en una nueva ventana o pestaña
+        window.open(enlaceWhatsApp, '_blank');
+      });
+    }
+
+
+    window.onload = function() {
+      var imprimirBtn = document.getElementById('imprimir-btn');
+      imprimirBtn.addEventListener('click', function() {
+        var userAgent = navigator.userAgent.toLowerCase();
+
+        // Verificar si el usuario está accediendo desde un dispositivo móvil
+        var isMobile = /iphone|ipad|ipod|android|blackberry|windows phone/.test(userAgent);
+        imprimirBtn.style.display = 'none'; // Oculta el botón antes de la impresión
+        
+        if (isMobile) {
+          // Acceso desde un dispositivo móvil, llamar a la función compartirDocumento()
+          compartirDocumento();
+          caches.delete();
+        } else {
+          // Acceso desde un computador, llamar a la función de impresión del navegador
+          window.print();
+          caches.delete();
+        }
+        
+        // Espera 1 segundo y vuelve a mostrar el botón
+        setTimeout(function() {
+          imprimirBtn.style.display = 'block';
+        }, 1000);
+      });
+    };
+  </script>
+
+    <script>
+    var inputDiv = document.getElementById("inputDiv");
+    var outputDiv = document.getElementById("outputDiv");
+
+    inputDiv.addEventListener("input", function() {
+    var texto = inputDiv.textContent;
+    outputDiv.textContent = texto;
+    });
+
+
+    </script>
+</body>
+</html>
