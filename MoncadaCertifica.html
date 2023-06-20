@@ -146,19 +146,29 @@
       var elemento = document.body;
 
       // Genera el PDF a partir de la impresión de la página
-      html2pdf().set(opciones).from(elemento).save().then(function(pdf) {
-        // Obtiene la URL del PDF generado
-        var pdfUrl = URL.createObjectURL(pdf);
+      var textoCompartir = '¡Aquí está tu documento PDF!'; // Puedes personalizar el mensaje
 
-        // Crea el enlace de WhatsApp con el texto y la URL del PDF
-        var textoCompartir = '¡Aquí está tu documento PDF!'; // Puedes personalizar el mensaje
-        var enlaceWhatsApp = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(textoCompartir + '\n\n' + pdfUrl);
+      html2pdf().set(opciones).from(elemento).outputPdf().then(function (pdf) {
+      var file = new File([pdf], 'certificado.pdf', { type: 'application/pdf' });
+      var filesArray = [file];
 
-        // Abre el enlace de WhatsApp en una nueva ventana o pestaña
-        window.open(enlaceWhatsApp, '_blank');
-      });
+      if (navigator.share && navigator.canShare && navigator.canShare({ files: filesArray })) {
+        navigator.share({
+          text: textoCompartir,
+          files: filesArray
+        })
+          .then(function () {
+            console.log('Compartido exitosamente.');
+          })
+          .catch(function (error) {
+            console.error('Error al compartir:', error);
+          });
+      } else {
+        console.warn('La función de compartir no está disponible en este navegador.');
+      }
+    });
     }
-
+    
 
     window.onload = function() {
       var imprimirBtn = document.getElementById('imprimir-btn');
