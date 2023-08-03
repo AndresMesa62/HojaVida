@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   body {
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -33,11 +33,11 @@
   <input type="file" id="upload" accept="image/*">
   <select id="sizeSelect">
     <option value="auto:auto">Auto</option>
-    <option value="1080:1080">1:1 (400x400)</option>
-    <option value="949:1265">3:4 (300x400)</option>
-    <option value="720:1280">9:16 (200x400)</option>
-    <option value="1265:949">4:3 (300x400)</option>
-    <option value="1280:720">16:9 (200x400)</option>
+    <option value="100:100">1:1 </option>
+    <option value="75:100">3:4 </option>
+    <option value="100:75">4:3 </option>
+    <option value="56:100">9:16 </option>
+    <option value="100:56">16:9 </option>
   </select>
   <button id="save">Guardar</button>
   <div id="container">
@@ -57,8 +57,8 @@
       const selectedSize = sizeSelect.value.split(':');
       const width = selectedSize[0];
       const height = selectedSize[1];
-      imageDiv.style.width = width === 'auto' ? 'auto' : width + 'px';
-      imageDiv.style.height = height === 'auto' ? 'auto' : height + 'px';
+      imageDiv.style.width = width === 'auto' ? 'auto' : width + 'vw';
+      imageDiv.style.height = height === 'auto' ? 'auto' : height + 'vw';
     });
 
     uploadInput.addEventListener('change', function(e) {
@@ -77,8 +77,8 @@
 
       domtoimage.toPng(imageDiv, {
         style: {
-          width: resolutionWidth + 'px',
-          height: resolutionHeight + 'px'
+          width: resolutionWidth + 'vw',
+          height: resolutionHeight + 'vw'
         }
       })
       .then(function(dataUrl) {
