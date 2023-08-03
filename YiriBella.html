@@ -68,10 +68,10 @@
     });
 
     saveButton.addEventListener('click', function() {
-      domtoimage.toPng(imageDiv)
+      domtoimage.toJpeg(imageDiv, { quality: 0.95 }) // Ajusta la calidad según tus necesidades
         .then(function(dataUrl) {
           const link = document.createElement('a');
-          link.download = 'output.png';
+          link.download = 'output.jpg';
           link.href = dataUrl;
           link.click();
         })
