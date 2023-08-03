@@ -24,8 +24,8 @@
 
   #image {
     position: absolute;
-    bottom: 30px; /* Alineado a la esquina inferior derecha con un pequeño margen */
-    right: 30px;
+    bottom: 10px; /* Alineado a la esquina inferior derecha con un pequeño margen */
+    right: 10px;
   }
 </style>
 </head>
@@ -33,16 +33,16 @@
   <input type="file" id="upload" accept="image/*">
   <select id="sizeSelect">
     <option value="auto:auto">Auto</option>
-    <option value="400:400">1:1 (400x400)</option>
-    <option value="300:400">3:4 (300x400)</option>
-    <option value="400:300">4:3 (400x300)</option>
-    <option value="200:400">9:16 (200x400)</option>
-    <option value="400:200">16:9 (400x200)</option>
+    <option value="1080:1080">1:1 (400x400)</option>
+    <option value="949:1265">3:4 (300x400)</option>
+    <option value="720:1280">9:16 (200x400)</option>
+    <option value="1265:949">4:3 (300x400)</option>
+    <option value="1280:720">16:9 (200x400)</option>
   </select>
   <button id="save">Guardar</button>
   <div id="container">
     <div id="image">
-        <img src="img/espacio_elite.png" style="width: 100px;">
+        <img src="img/logobuho.jpg" style="width: 50px;">
     </div>
   </div>
 
@@ -68,16 +68,28 @@
     });
 
     saveButton.addEventListener('click', function() {
-      domtoimage.toJpeg(imageDiv, { quality: 0.95 }) // Ajusta la calidad según tus necesidades
-        .then(function(dataUrl) {
-          const link = document.createElement('a');
-          link.download = 'output.jpg';
-          link.href = dataUrl;
-          link.click();
-        })
-        .catch(function(error) {
-          console.error('Error:', error);
-        });
+      const selectedSize = sizeSelect.value.split(':');
+      const width = selectedSize[0];
+      const height = selectedSize[1];
+
+      const resolutionWidth = width === 'auto' ? imageDiv.offsetWidth : parseInt(width);
+      const resolutionHeight = height === 'auto' ? imageDiv.offsetHeight : parseInt(height);
+
+      domtoimage.toPng(imageDiv, {
+        style: {
+          width: resolutionWidth + 'px',
+          height: resolutionHeight + 'px'
+        }
+      })
+      .then(function(dataUrl) {
+        const link = document.createElement('a');
+        link.download = 'output.png';
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch(function(error) {
+        console.error('Error:', error);
+      });
     });
   </script>
 </body>
