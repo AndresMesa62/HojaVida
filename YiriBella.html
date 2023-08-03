@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+  }
+
+  #container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background-image: url('marca_de_agua.png'); /* Coloca aquí la URL de tu marca de agua */
+    background-size: contain; /* Cambiado a "contain" para ajustar la imagen de fondo al tamaño del div sin recortar */
+    background-repeat: no-repeat;
+  }
+
+  #image {
+    position: absolute;
+    bottom: 30px; /* Alineado a la esquina inferior derecha con un pequeño margen */
+    right: 30px;
+  }
+</style>
+</head>
+<body>
+  <input type="file" id="upload" accept="image/*">
+  <select id="sizeSelect">
+    <option value="auto:auto">Auto</option>
+    <option value="400:400">1:1 (400x400)</option>
+    <option value="300:400">3:4 (300x400)</option>
+    <option value="400:300">4:3 (400x300)</option>
+    <option value="200:400">9:16 (200x400)</option>
+    <option value="400:200">16:9 (400x200)</option>
+  </select>
+  <button id="save">Guardar</button>
+  <div id="container">
+    <div id="image">
+        <img src="img/espacio_elite.png" style="width: 100px;">
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+  <script>
+    const uploadInput = document.getElementById('upload');
+    const sizeSelect = document.getElementById('sizeSelect');
+    const imageDiv = document.getElementById('container');
+    const saveButton = document.getElementById('save');
+
+    sizeSelect.addEventListener('change', function() {
+      const selectedSize = sizeSelect.value.split(':');
+      const width = selectedSize[0];
+      const height = selectedSize[1];
+      imageDiv.style.width = width === 'auto' ? 'auto' : width + 'px';
+      imageDiv.style.height = height === 'auto' ? 'auto' : height + 'px';
+    });
+
+    uploadInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      const imageUrl = URL.createObjectURL(file);
+      imageDiv.style.backgroundImage = `url(${imageUrl})`;
+    });
+
+    saveButton.addEventListener('click', function() {
+      domtoimage.toPng(imageDiv)
+        .then(function(dataUrl) {
+          const link = document.createElement('a');
+          link.download = 'output.png';
+          link.href = dataUrl;
+          link.click();
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+        });
+    });
+  </script>
+</body>
+</html>
