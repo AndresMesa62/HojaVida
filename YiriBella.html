@@ -11,11 +11,12 @@
     height: 100vh;
     margin: 0;
     background-color: #f4f4f4;
+    flex-direction: column;
   }
 
   #container {
     position: relative;
-    width: 400px;
+    width: 65vw;
     height: 400px;
     background-image: url('marca_de_agua.png'); /* Coloca aquí la URL de tu marca de agua */
     background-size: contain; /* Cambiado a "contain" para ajustar la imagen de fondo al tamaño del div sin recortar */
@@ -30,22 +31,40 @@
 </style>
 </head>
 <body>
-  <input type="file" id="upload" accept="image/*">
-  <select id="sizeSelect">
-    <option value="auto:auto">Auto</option>
-    <option value="100:100">1:1 </option>
-    <option value="75:100">3:4 </option>
-    <option value="100:75">4:3 </option>
-    <option value="56:100">9:16 </option>
-    <option value="100:56">16:9 </option>
-  </select>
-  <button id="save">Guardar</button>
+  <video autoplay loop muted style="position: absolute; top: 0;left: 0;width: 100%;">
+    <source src="videos/Fondo.mp4" type="video/mp4">
+    <!-- Aquí puedes agregar más formatos de video para mejorar la compatibilidad -->
+  </video>
+  <div style=" position:sticky;display: flex;justify-content: center;align-items: center;color: #f4f4f4;">
+    <img src="img/TU_MEJOR_ALIADO.png" style="width: 40%; margin-top: 80px;margin-bottom: 80px;">
+    
+  </div>
+  <div style=" position:sticky;display: flex;justify-content: center;align-items: center;color: #f4f4f4;">
+    <h1 style="font-family: 'Courier New', Courier, monospace;">AGREGA TU MARCA DE AGUA</h1>
+  </div>
+  <div style=" position:sticky;display: flex;justify-content: center;align-items: center;color: #f4f4f4;">
+    <h2 style="margin-right: 40px;font-family: 'Courier New', Courier, monospace;">Selecciona una imagen:</h2> <input type="file" id="upload" >
+  </div>
+  <div style="position: sticky; display: flex;justify-content: center;align-items: center; color: #f4f4f4;">
+    <h2 style="margin-right: 40px;font-family: 'Courier New', Courier, monospace;">Selecciona el tamaño:</h2>
+    <select id="sizeSelect">
+      <option value="auto:auto">Auto</option>
+      <option value="100:100">1:1 </option>
+      <option value="75:100">3:4 </option>
+      <option value="100:75">4:3 </option>
+      <option value="56:100">9:16 </option>
+      <option value="100:56">16:9 </option>
+    </select>
+  </div>
+  
   <div id="container">
     <div id="image">
         <img src="img/espacio_elite.png" style="width: 20vw;">
     </div>
   </div>
-
+  <div style="position: sticky;display: flex;justify-content: center;align-items: center;">
+    <button id="save" style="width: 180px;height: 80px;font-size: 30px;border-radius: 10px;">Guardar</button>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
   <script>
     const uploadInput = document.getElementById('upload');
