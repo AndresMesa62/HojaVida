@@ -94,12 +94,11 @@
       const resolutionWidth = width === 'auto' ? imageDiv.offsetWidth : parseInt(width);
       const resolutionHeight = height === 'auto' ? imageDiv.offsetHeight : parseInt(height);
 
-      domtoimage.toJpeg(imageDiv, { quality: 0.95 }) // Ajusta la calidad según tus necesidades
-      .then(function(dataUrl) {
-        const link = document.createElement('a');
-        link.download = 'output.jpeg';
-        link.href = dataUrl;
-        link.click();
+      domtoimage.toPng(imageDiv, {
+        style: {
+          width: resolutionWidth + 'vw',
+          height: resolutionHeight + 'vw'
+        }
       })
       .then(function(dataUrl) {
         const link = document.createElement('a');
