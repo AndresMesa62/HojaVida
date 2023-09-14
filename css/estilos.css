@@ -1,129 +1,45 @@
-body {
-	background-color: #333333;
-	color: #ffffff;
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-}
-
-header {
-	background-color: #000000;
-	padding: 20px;
-}
-
-nav {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-.logo img {
-	height: 50px;
-}
-
-nav ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-nav li {
-	display: inline-block;
-	margin-left: 20px;
-}
-
-nav a {
-	color: #ffffff;
-	text-decoration: none;
-}
-
-nav a:hover {
-	color: #30B5BE;
-}
-
-main {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: auto;
-	width: 100%;
-}
-
 .botones {
-    margin-top: 20px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 80%;
+	border-radius: 10px;
+    color: white;
+    background-color: rgb(0, 0, 0,0.7);
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    height: 150px;
+    display: flex; /* Activar el modelo de caja Flex */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+}
+
+.botones:hover {
+    background-color: #32A2AD; /* Cambiar el color de fondo al pasar el mouse */
 }
 
 .botones a {
-	background-color: #30B5BE;
-	color: #ffffff;
-	border: none;
-	padding: 15px 30px;
-	margin: 10px 0;
-	font-size: 22px;
-    font-weight: bold;
-	cursor: pointer;
-    width: 50%;
+    color: white;
     text-align: center;
     text-decoration: none;
-}
-.botones a:hover {
-	background-color: #ffffff;
-	color: #30B5BE;
+    vertical-align: center; /* Esto no es necesario */
+    padding: 10px;
+	font-weight: bolder;
 }
 
-@media (max-width: 767px) {
-	nav {
-		flex-direction: column;
-		align-items: center;
-	}
-	.logo {
-		margin: 20px 0;
-	}
-	ul {
-		display: none;
-	}
-	.menu-icon {
-		display: block;
-	}
-	.menu-icon span {
-		display: block;
-		width: 30px;
-		height: 3px;
-		margin: 5px 0;
-		background-color: #ffffff;
-	}
-	.menu-active {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		height: 100%;
-		background-color: #000000;
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-	}
-	.menu-active li {
-		margin: 20px 0;
-	}
-	.menu-active a {
-		color: #ffffff;
-		font-size: 24px;
-	}
-	.botones {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin-top: 40px;
-	}
-	.botones a {
-		width: 80%;
-	}
+.fondo {
+	padding-top: 100px;
+    background-image: url('/img/fondomain.jpg'); /* Ruta de la imagen de fondo */
+    background-size: cover; /* Ajusta la imagen al tamaño del div */
+    background-position: center center; /* Centra la imagen horizontal y verticalmente */
+    width: 100%; /* Ancho del div al 100% del contenedor */
+    height: auto; /* Altura del div al 100% del viewport (pantalla) */
+	padding: 30px;
+}
+.fondo2 {
+	padding-top: 100px;
+    background-image: url('/img/fondo2.jpg'); /* Ruta de la imagen de fondo */
+    background-size: cover; /* Ajusta la imagen al tamaño del div */
+    background-position: center center; /* Centra la imagen horizontal y verticalmente */
+    width: 100%; /* Ancho del div al 100% del contenedor */
+    height: auto; /* Altura del div al 100% del viewport (pantalla) */
+	padding: 30px;
 }
