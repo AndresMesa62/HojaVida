@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+ body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+  }
+  #container {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+  #image {
+    width: 100%;
+    height: auto;
+  }
+  #watermark {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+    height: auto;
+  }
+  
+</style>
+</head>
+<body>
+  <video autoplay loop muted style="position: absolute; top: 0;left: 0;width: 100%;">
+    <source src="video/Fondo.mp4" type="video/mp4">
+    <!-- Aquí puedes agregar más formatos de video para mejorar la compatibilidad -->
+  </video>
+  <div style=" position:sticky;display: flex;justify-content: center;align-items: center;color: #f4f4f4;">
+    <img src="logo/TU_MEJOR_ALIADO.png" style="width: 40%; margin-top: 80px;margin-bottom: 80px;">
+    
+  </div>
+  <div style=" position:sticky;display: flex;justify-content: center;align-items: center;color: #f4f4f4;">
+    <h1 style="font-family: 'Courier New', Courier, monospace;">AGREGA TU MARCA DE AGUA</h1>
+  </div>
+  <div style=" position:sticky;display: flex;justify-content: center;align-items: center;color: #f4f4f4;">
+    <h2 style="margin-right: 40px;font-family: 'Courier New', Courier, monospace;">Selecciona una imagen:</h2> <input type="file" id="upload" >
+  </div>
+  
+  <div id="container" style="margin-top: 200PX;">
+    <img id="image">
+    <img id="watermark" src="logo/logo.png">
+  </div>
+  <div style="position: sticky;display: flex;justify-content: center;align-items: center;">
+    <button id="save" style="width: 180px;height: 80px;font-size: 30px;border-radius: 10px;">Guardar</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+  <script>
+    const uploadInput = document.getElementById('upload');
+    const imageElement = document.getElementById('image');
+    const watermarkElement = document.getElementById('watermark');
+
+    uploadInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const imageUrl = URL.createObjectURL(file);
+        imageElement.src = imageUrl;
+      }
+    });
+
+    document.getElementById('save').addEventListener('click', function() {
+      const container = document.getElementById('container');
+      const resolutionWidth = container.offsetWidth;
+      const resolutionHeight = container.offsetHeight;
+
+      const canvas = document.createElement('canvas');
+      canvas.width = resolutionWidth;
+      canvas.height = resolutionHeight;
+      const ctx = canvas.getContext('2d');
+      
+      ctx.drawImage(imageElement, 0, 0, resolutionWidth, resolutionHeight);
+      
+      const watermarkWidth = watermarkElement.offsetWidth;
+      const watermarkHeight = watermarkElement.offsetHeight;
+      const xPosition = resolutionWidth / 2 - watermarkWidth / 2;
+      const yPosition = resolutionHeight - watermarkHeight*1.5;
+
+      // Dibujamos la marca de agua en la posición y tamaño deseados
+      ctx.drawImage(watermarkElement, xPosition, yPosition, watermarkWidth, watermarkHeight);
+
+      const dataUrl = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.download = 'output.png';
+      link.href = dataUrl;
+      link.click();
+    });
+</script>
+
+
+</body>
+</html>
