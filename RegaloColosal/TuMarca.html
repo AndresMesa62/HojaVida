@@ -110,8 +110,8 @@
   const yPositionPercentage = (parseFloat(verticalSlider.value) / 100);
   const sizePercentage = (parseFloat(sizeSlider.value) / 100);
   
-  const watermarkWidth = watermarkElement.width * sizePercentage;
-  const watermarkHeight = watermarkElement.height * sizePercentage;
+  const watermarkWidth = watermarkElement.width ;
+  const watermarkHeight = watermarkElement.height ;
   
   const xPosition = (containerWidth - watermarkWidth) * xPositionPercentage;
   const yPosition = (containerHeight - watermarkHeight) * (1-yPositionPercentage);
