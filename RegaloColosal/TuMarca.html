@@ -10,7 +10,7 @@
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f4f4f4;
+    background-color: #333333;
   }
   #container {
     position: relative;
@@ -23,23 +23,23 @@
   }
   #watermark {
     position: absolute;
-    bottom: 30%;
-    left: 50%;
-    transform: translate(-50%, 0);
     width: 45%;
     height: auto;
   }
-  
+  #sliders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  input[type="range"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 </style>
 </head>
 <body>
-  <video autoplay loop muted style="position: absolute; top: 0;left: 0;width: 100%;">
-    <source src="video/Fondo.mp4" type="video/mp4">
-    <!-- Aquí puedes agregar más formatos de video para mejorar la compatibilidad -->
-  </video>
   <div style=" position:sticky;display: flex;justify-content: center;align-items: center;color: #f4f4f4;">
     <img src="logo/TU_MEJOR_ALIADO.png" style="width: 40%; margin-top: 80px;margin-bottom: 80px;">
-    
   </div>
   <div style=" position:sticky;display: flex;justify-content: center;align-items: center;color: #f4f4f4;">
     <h1 style="font-family: 'Courier New', Courier, monospace;">AGREGA TU MARCA DE AGUA</h1>
@@ -48,9 +48,17 @@
     <h2 style="margin-right: 40px;font-family: 'Courier New', Courier, monospace;">Selecciona una imagen:</h2> <input type="file" id="upload" >
   </div>
   
-  <div id="container" style="margin-top: 500PX;">
+  <div id="container" style="margin-top: 500px;">
     <img id="image">
     <img id="watermark" src="logo/logot.png">
+  </div>
+  <div id="sliders" style="color: white;font-size: 24px;">
+    <label for="horizontal-slider">Desplazamiento Horizontal:</label>
+    <input type="range" id="horizontal-slider" min="0" max="100" value="50">
+    <label for="vertical-slider">Desplazamiento Vertical:</label>
+    <input type="range" id="vertical-slider" min="0" max="100" value="30">
+    <label for="size-slider">Tamaño del Watermark:</label>
+    <input type="range" id="size-slider" min="10" max="100" value="45">
   </div>
   <div style="position: sticky;display: flex;justify-content: center;align-items: center;">
     <button id="save" style="width: 180px;height: 80px;font-size: 30px;border-radius: 10px;">Guardar</button>
@@ -60,6 +68,9 @@
     const uploadInput = document.getElementById('upload');
     const imageElement = document.getElementById('image');
     const watermarkElement = document.getElementById('watermark');
+    const horizontalSlider = document.getElementById('horizontal-slider');
+    const verticalSlider = document.getElementById('vertical-slider');
+    const sizeSlider = document.getElementById('size-slider');
 
     uploadInput.addEventListener('change', function(e) {
       const file = e.target.files[0];
@@ -68,6 +79,24 @@
         imageElement.src = imageUrl;
       }
     });
+
+    function updateWatermark() {
+      const resolutionWidth = container.offsetWidth;
+      const resolutionHeight = container.offsetHeight;
+      const watermarkWidth = (sizeSlider.value / 100) * resolutionWidth;
+      const watermarkHeight = (sizeSlider.value / 100) * resolutionHeight;
+      const xPosition = (horizontalSlider.value / 100) * (resolutionWidth - watermarkWidth);
+      const yPosition = (verticalSlider.value / 100) * (resolutionHeight - watermarkHeight);
+
+      watermarkElement.style.width = `${watermarkWidth}px`;
+      watermarkElement.style.height = `${watermarkHeight}px`;
+      watermarkElement.style.left = `${xPosition}px`;
+      watermarkElement.style.bottom = `${yPosition}px`;
+    }
+
+    horizontalSlider.addEventListener('input', updateWatermark);
+    verticalSlider.addEventListener('input', updateWatermark);
+    sizeSlider.addEventListener('input', updateWatermark);
 
     document.getElementById('save').addEventListener('click', function() {
       const container = document.getElementById('container');
@@ -83,8 +112,8 @@
       
       const watermarkWidth = watermarkElement.offsetWidth;
       const watermarkHeight = watermarkElement.offsetHeight;
-      const xPosition = resolutionWidth / 2 - watermarkWidth / 2;
-      const yPosition = resolutionHeight - watermarkHeight*1.5;
+      const xPosition = parseFloat(watermarkElement.style.left);
+      const yPosition = parseFloat(watermarkElement.style.bottom) + watermarkHeight;
 
       // Dibujamos la marca de agua en la posición y tamaño deseados
       ctx.drawImage(watermarkElement, xPosition, yPosition, watermarkWidth, watermarkHeight);
@@ -95,8 +124,6 @@
       link.href = dataUrl;
       link.click();
     });
-</script>
-
-
+  </script>
 </body>
 </html>
