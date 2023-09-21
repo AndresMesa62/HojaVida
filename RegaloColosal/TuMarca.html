@@ -57,7 +57,7 @@
     <input type="range" id="horizontal-slider" min="0" max="100" value="50">
     <label for="vertical-slider">Desplazamiento Vertical:</label>
     <input type="range" id="vertical-slider" min="0" max="100" value="30">
-    <label for="size-slider">Tamaño del Watermark:</label>
+    <label for="size-slider">Tamaño de la Marca de Agua:</label>
     <input type="range" id="size-slider" min="10" max="100" value="45">
   </div>
   <div style="position: sticky;display: flex;justify-content: center;align-items: center;">
@@ -114,7 +114,7 @@
   const watermarkHeight = watermarkElement.height * sizePercentage;
   
   const xPosition = (containerWidth - watermarkWidth) * xPositionPercentage;
-  const yPosition = (containerHeight - watermarkHeight) * yPositionPercentage;
+  const yPosition = (containerHeight - watermarkHeight) * (1-yPositionPercentage);
 
   // Crear el lienzo y contexto para dibujar
   const canvas = document.createElement('canvas');
