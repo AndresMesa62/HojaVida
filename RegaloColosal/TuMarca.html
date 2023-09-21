@@ -99,31 +99,43 @@
     sizeSlider.addEventListener('input', updateWatermark);
 
     document.getElementById('save').addEventListener('click', function() {
-      const container = document.getElementById('container');
-      const resolutionWidth = container.offsetWidth;
-      const resolutionHeight = container.offsetHeight;
+  const container = document.getElementById('container');
+  const containerWidth = container.offsetWidth;
+  const containerHeight = container.offsetHeight;
+  
+  const imageWidth = imageElement.width;
+  const imageHeight = imageElement.height;
+  
+  const xPositionPercentage = (parseFloat(horizontalSlider.value) / 100);
+  const yPositionPercentage = (parseFloat(verticalSlider.value) / 100);
+  const sizePercentage = (parseFloat(sizeSlider.value) / 100);
+  
+  const watermarkWidth = watermarkElement.width * sizePercentage;
+  const watermarkHeight = watermarkElement.height * sizePercentage;
+  
+  const xPosition = (containerWidth - watermarkWidth) * xPositionPercentage;
+  const yPosition = (containerHeight - watermarkHeight) * yPositionPercentage;
 
-      const canvas = document.createElement('canvas');
-      canvas.width = resolutionWidth;
-      canvas.height = resolutionHeight;
-      const ctx = canvas.getContext('2d');
-      
-      ctx.drawImage(imageElement, 0, 0, resolutionWidth, resolutionHeight);
-      
-      const watermarkWidth = watermarkElement.offsetWidth;
-      const watermarkHeight = watermarkElement.offsetHeight;
-      const xPosition = parseFloat(watermarkElement.style.left);
-      const yPosition = parseFloat(watermarkElement.style.bottom) + watermarkHeight;
+  // Crear el lienzo y contexto para dibujar
+  const canvas = document.createElement('canvas');
+  canvas.width = containerWidth;
+  canvas.height = containerHeight;
+  const ctx = canvas.getContext('2d');
+  
+  // Dibujar la imagen principal
+  ctx.drawImage(imageElement, 0, 0, containerWidth, containerHeight);
+  
+  // Dibujar la marca de agua en la posición y tamaño deseados
+  ctx.drawImage(watermarkElement, xPosition, yPosition, watermarkWidth, watermarkHeight);
+  
+  // Convertir el lienzo a una imagen descargable
+  const dataUrl = canvas.toDataURL('image/png');
+  const link = document.createElement('a');
+  link.download = 'output.png';
+  link.href = dataUrl;
+  link.click();
+});
 
-      // Dibujamos la marca de agua en la posición y tamaño deseados
-      ctx.drawImage(watermarkElement, xPosition, yPosition, watermarkWidth, watermarkHeight);
-
-      const dataUrl = canvas.toDataURL('image/png');
-      const link = document.createElement('a');
-      link.download = 'output.png';
-      link.href = dataUrl;
-      link.click();
-    });
   </script>
 </body>
 </html>
